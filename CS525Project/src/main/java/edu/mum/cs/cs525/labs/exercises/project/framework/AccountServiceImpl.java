@@ -1,7 +1,5 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
-import java.beans.Customizer;
-
 public abstract class AccountServiceImpl  implements AccountService{
 
 	public void addInterest(Account account) {
@@ -9,16 +7,13 @@ public abstract class AccountServiceImpl  implements AccountService{
 	}
 
 	public void createAccount(Account account) {
-		CreateAbstractFactory caf = this.createFactory();
+		CreateAbstractFactory caf = this.createFactory(account);
 		Account acct = caf.createAccount();
 		Party party = caf.createCustomer();
 		InterestType interestType = caf.createInterest();
 		acct.setInterestType(interestType);
 		acct.setCustomer(party);
-		//
 	}
-	
-	public abstract CreateAbstractFactory createFactory();
 
 	public void deposit(Account account, double val) {
 		account.deposit();
@@ -26,7 +21,7 @@ public abstract class AccountServiceImpl  implements AccountService{
 			notifyObservers();
 		
 	}
-	public abstract boolean checkNotify(Account account, double val);
+	
 
 	public void withdraw(Account account, double val) {
 		account.withdraw();
@@ -35,8 +30,9 @@ public abstract class AccountServiceImpl  implements AccountService{
 	}
 
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
 		
 	}
-	
+
+	public abstract CreateAbstractFactory createFactory(Account account);
+	public abstract boolean checkNotify(Account account, double val);
 }
