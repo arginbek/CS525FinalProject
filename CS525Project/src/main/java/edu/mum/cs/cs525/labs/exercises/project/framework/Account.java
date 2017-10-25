@@ -12,6 +12,15 @@ public abstract class Account {
 	private String state;
 	private String zip;
 	private String email;
+	private double minThreshold = 0;
+
+	public double getMinThreshold() {
+		return minThreshold;
+	}
+
+	public void setMinThreshold(double minThreshold) {
+		this.minThreshold = minThreshold;
+	}
 
 	public String getEmail() {
 		return email;
@@ -106,14 +115,16 @@ public abstract class Account {
 	};
 
 	public void withdraw(double val, String description) {
-		this.balance = balance - val;
-		AccountEntry entry = new AccountEntry();
-		entry.setAccount(this);
-		entry.setDescription(description);
-		entry.setValue(-val);
-		entries.add(entry);
+		if (balance - val >= minThreshold) {
+			this.balance = balance - val;
+			AccountEntry entry = new AccountEntry();
+			entry.setAccount(this);
+			entry.setDescription(description);
+			entry.setValue(-val);
+			entries.add(entry);
+		}
 	}
-	
+
 	public void addInterest() {
 		this.balance = this.balance + this.interestType.calcInterest(this.getBalance());
 	}

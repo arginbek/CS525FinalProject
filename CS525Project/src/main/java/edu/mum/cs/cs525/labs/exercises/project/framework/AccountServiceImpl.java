@@ -2,9 +2,11 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 public abstract class AccountServiceImpl implements AccountService {
 	private AccountDAO accountDAO;
+	private CustomerDAO customerDAO;
 
 	public AccountServiceImpl() {
 		accountDAO = new AccountDAOImpl();
+		customerDAO = new CustomerDAOImpl();
 	}
 
 	public void addInterest() {
@@ -17,7 +19,11 @@ public abstract class AccountServiceImpl implements AccountService {
 		Party party = caf.createCustomer();
 		InterestType interestType = caf.createInterest();
 		acct.setInterestType(interestType);
-		acct.setCustomer(party);
+		Party customer = customerDAO.loadCustomer(party.getEmail());
+		if (customer == null)
+			customerDAO.saveCustomer(party);
+		else
+			acct.setCustomer(customer);
 		accountDAO.saveAccount(acct);
 	}
 
