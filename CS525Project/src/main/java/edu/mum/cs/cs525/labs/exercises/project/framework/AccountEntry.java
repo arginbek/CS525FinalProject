@@ -3,6 +3,14 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 import java.time.LocalDate;
 
 public class AccountEntry {
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 	String accountNumber;
 	String accountName;
 	double value;

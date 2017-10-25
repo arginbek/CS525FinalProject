@@ -24,16 +24,14 @@ public abstract class AccountServiceImpl extends Observable implements AccountSe
 		acct.setInterestType(interestType);
 		Party customer = customerDAO.loadCustomer(party.getEmail());
 
-		
 		if (customer == null) {
 			customerDAO.saveCustomer(party);
 			acct.setCustomer(party);
-      this.addObserver(party);
-		}
-		else {
+			this.addObserver(party);
+		} else {
 			acct.setCustomer(customer);
-      this.addObserver(customer);
-    }
+			this.addObserver(customer);
+		}
 		accountDAO.saveAccount(acct);
 	}
 
@@ -50,8 +48,8 @@ public abstract class AccountServiceImpl extends Observable implements AccountSe
 		if (checkNotify(account, val))
 			notifyObservers(new TransactionSender(account, val, description));
 	}
-	
-	public List<? extends Account> getAccounts(){
+
+	public List<? extends Account> getAccounts() {
 		return accountDAO.getAccounts();
 	}
 
