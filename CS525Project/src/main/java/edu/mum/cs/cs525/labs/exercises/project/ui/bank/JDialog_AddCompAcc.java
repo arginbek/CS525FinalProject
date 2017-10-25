@@ -2,6 +2,8 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
 
+//import bank.MainFrm;
+
 
 
 public class JDialog_AddCompAcc extends javax.swing.JDialog
@@ -147,7 +149,6 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
            else
            parentframe.accountType="S";
 	   parentframe.newaccount=true;
-	   
 	   dispose();
 			 
 	}
