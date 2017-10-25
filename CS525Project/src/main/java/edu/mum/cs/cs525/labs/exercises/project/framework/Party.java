@@ -1,6 +1,7 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 import java.util.Observable;
+import java.util.Observer;
 
 public abstract class Party implements Observer {
 	protected String name;
@@ -59,11 +60,14 @@ public abstract class Party implements Observer {
 	}
 
 	public void update(Observable o, Object arg) {
-		sendEmail();
+		TransactionSender sender = ((TransactionSender) arg);
+		String content = "Transaction description: " + sender.getDescription() + 
+				"Transaction amount: " + sender.getAmount() + 
+				"Account number: " + sender.getAccount().getAccountNumber();
+		sendEmail(content);
 	}
 
-	private void sendEmail() {
-		// TODO Auto-generated method stub
-
+	private void sendEmail(String content) {
+		System.out.println(content);
 	}
 }

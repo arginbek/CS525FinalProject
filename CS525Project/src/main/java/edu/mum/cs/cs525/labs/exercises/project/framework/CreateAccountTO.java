@@ -4,6 +4,14 @@ public class CreateAccountTO {
 	private String interestType;
 	private String customer;
 	private AccountType accountType;
+	private String accountNumber;
+	private String name;
+	private String street;
+	private String city;
+	private String state;
+	private String zip;
+	private String email;
+	
 	public String getInterestType() {
 		return interestType;
 	}
@@ -64,11 +72,4 @@ public class CreateAccountTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	private String accountNumber;
-	private String name;
-	private String street;
-	private String city;
-	private String state;
-	private String zip;
-	private String email;
 }
