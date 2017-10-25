@@ -147,6 +147,7 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
            else
            parentframe.accountType="S";
 	   parentframe.newaccount=true;
+	   
 	   dispose();
 			 
 	}
