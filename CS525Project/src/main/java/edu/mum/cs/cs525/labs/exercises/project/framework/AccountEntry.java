@@ -25,14 +25,6 @@ public class AccountEntry {
 		this.accountName = accountName;
 	}
 
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
 	public double getValue() {
 		return value;
 	}

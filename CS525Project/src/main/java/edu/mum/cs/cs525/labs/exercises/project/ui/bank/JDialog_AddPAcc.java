@@ -6,7 +6,7 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
 
-import edu.mum.cs.cs525.labs.exercises.project.bank.AccountType;
+import edu.mum.cs.cs525.labs.exercises.project.framework.*;
 import edu.mum.cs.cs525.labs.exercises.project.bank.BankAccountService;
 import edu.mum.cs.cs525.labs.exercises.project.bank.BankCreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.bank.CreateFactoryBank;
