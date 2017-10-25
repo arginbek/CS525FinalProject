@@ -7,7 +7,6 @@ import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 public class BankCreateAccountTO extends CreateAccountTO {
 	private int numberOfEmployee;
 	private LocalDate birthDate;
-	private AccountType accountType;
 	
 	public int getNumberOfEmployee() {
 		return numberOfEmployee;
@@ -20,11 +19,5 @@ public class BankCreateAccountTO extends CreateAccountTO {
 	}
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
-	}
-	public AccountType getAccountType() {
-		return accountType;
-	}
-	public void setAccountType(AccountType accountType) {
-		this.accountType = accountType;
 	}
 }

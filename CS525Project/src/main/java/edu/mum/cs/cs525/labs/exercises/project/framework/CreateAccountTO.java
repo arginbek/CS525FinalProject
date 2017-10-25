@@ -3,11 +3,18 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 public class CreateAccountTO {
 	private String interestType;
 	private String customer;
+	private AccountType accountType;
 	public String getInterestType() {
 		return interestType;
 	}
 	public void setInterestType(String interestType) {
 		this.interestType = interestType;
+	}
+	public AccountType getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
 	}
 	public String getCustomer() {
 		return customer;
