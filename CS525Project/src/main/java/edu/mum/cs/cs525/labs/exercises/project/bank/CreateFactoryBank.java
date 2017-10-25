@@ -1,16 +1,20 @@
 package edu.mum.cs.cs525.labs.exercises.project.bank;
 
 import edu.mum.cs.cs525.labs.exercises.project.framework.Account;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountType;
+import edu.mum.cs.cs525.labs.exercises.project.framework.Company;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAbstractFactory;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.framework.InterestType;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Party;
+import edu.mum.cs.cs525.labs.exercises.project.framework.Person;
 
 public class CreateFactoryBank implements CreateAbstractFactory {
 	private BankCreateAccountTO accountTO;
+
 	public CreateFactoryBank(CreateAccountTO accountTO) {
 		super();
-		this.accountTO = ((BankCreateAccountTO)accountTO);
+		this.accountTO = ((BankCreateAccountTO) accountTO);
 	}
 
 	public Account createAccount() {
@@ -47,7 +51,12 @@ public class CreateFactoryBank implements CreateAbstractFactory {
 	}
 
 	public Party createCustomer() {
-		Party party = new Party();
+		Party party;
+		if (accountTO.getAccountType().equals("company")) {
+			party = new Company();
+		} else {
+			party = new Person();
+		}
 		party.setEmail(accountTO.getEmail());
 		party.setName(accountTO.getName());
 		party.setStreet(accountTO.getStreet());
