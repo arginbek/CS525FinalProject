@@ -1,6 +1,7 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface AccountDAO {
 	void saveAccount(Account account);
@@ -9,5 +10,5 @@ public interface AccountDAO {
 
 	Account loadAccount(String accountnumber);
 
-	Collection<? extends Account> getAccounts();
+	List<? extends Account> getAccounts();
 }

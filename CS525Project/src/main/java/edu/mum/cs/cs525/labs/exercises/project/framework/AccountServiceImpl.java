@@ -1,5 +1,7 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
+import java.util.List;
+
 public abstract class AccountServiceImpl implements AccountService {
 	private AccountDAO accountDAO;
 	private CustomerDAO customerDAO;
@@ -43,6 +45,10 @@ public abstract class AccountServiceImpl implements AccountService {
 
 	public void notifyObservers() {
 
+	}
+	
+	public List<? extends Account> getAccounts(){
+		return accountDAO.getAccounts();
 	}
 
 	public abstract CreateAbstractFactory createFactory(CreateAccountTO accountTO);
