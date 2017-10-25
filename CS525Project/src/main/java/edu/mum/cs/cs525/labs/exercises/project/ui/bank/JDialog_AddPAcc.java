@@ -184,6 +184,7 @@ public class JDialog_AddPAcc extends javax.swing.JDialog
 		 accountTO =  new BankCreateAccountTO();
 			
 		   accountTO.setAccountNumber(JTextField_ACNR.getText());
+		   accountTO.setName(JTextField_NAME.getText());
 		   accountTO.setCity(JTextField_CT.getText());
 		   accountTO.setCustomer(JTextField_NAME.getText());
 		   accountTO.setStreet(JTextField_STR.getText());
