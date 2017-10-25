@@ -1,8 +1,15 @@
 package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 
 import java.awt.*;
+import java.util.ArrayList;
 
+import edu.mum.cs.cs525.labs.exercises.project.framework.Account;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountServiceImpl;
+import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAbstractFactory;
+import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;//.MainFrm;
+import edu.mum.cs.cs525.labs.exercises.project.bank.*;
 
 import javax.swing.*;
 
@@ -46,12 +53,7 @@ public class BankFrm extends MainFrm
        // JScrollPane1 = new JScrollPane();
         model = new DefaultTableModel();
        
-        model.addColumn("AccountNr");
-        model.addColumn("Name");
-        model.addColumn("City");
-        model.addColumn("P/C");
-        model.addColumn("Ch/S");
-        model.addColumn("Amount");
+        initModelCol();
         rowdata = new Object[8];
         newaccount=false;
         JTable1 = new JTable(model);
@@ -84,6 +86,16 @@ public class BankFrm extends MainFrm
 		JButton_Withdraw.addActionListener(lSymAction);
 		JButton_Addinterest.addActionListener(lSymAction);
 		
+	}
+
+
+	private void initModelCol() {
+		model.addColumn("AccountNr");
+        model.addColumn("Name");
+        model.addColumn("City");
+        model.addColumn("P/C");
+        model.addColumn("Ch/S");
+        model.addColumn("Amount");
 	}
 
 	
@@ -174,18 +186,45 @@ public class BankFrm extends MainFrm
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
-		if (newaccount){
-            // add row to table
-            rowdata[0] = accountnr;
-            rowdata[1] = clientName;
-            rowdata[2] = city;
-            rowdata[3] = "P";
-            rowdata[4] = accountType;
-            rowdata[5] = "0";
-            model.addRow(rowdata);
-            JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
-            newaccount=false;
-        }
+		
+		//fill the data table 
+//		
+		AccountService accSer = new BankAccountService() ;
+		ArrayList<BankAccount> accounts = (ArrayList<BankAccount>) accSer.getAccounts();
+//		
+		//model
+		
+
+         model = new DefaultTableModel();
+         
+         initModelCol();
+         for (BankAccount bankAccount : accounts) {
+        	 rowdata[0] = bankAccount.getAccountNumber();
+             rowdata[1] = bankAccount.getName();
+             rowdata[2] = bankAccount.getCity();
+             if(bankAccount instanceof PersonalAccount)
+            	 	rowdata[3] = AccountType.personal.toString();
+             else
+                 rowdata[3] = AccountType.company.toString();
+            	 
+             rowdata[4] = bankAccount.getInterestType();
+             rowdata[5] = bankAccount.getBalance();
+		}
+         
+         //for testing we are going to load all from list 
+         
+//		if (newaccount){
+//            // add row to table
+//            rowdata[0] = accountnr;
+//            rowdata[1] = clientName;
+//            rowdata[2] = city;
+//            rowdata[3] = "P";
+//            rowdata[4] = accountType;
+//            rowdata[5] = "0";
+//            model.addRow(rowdata);
+//            JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
+//            newaccount=false;
+//        }
 
        
         
