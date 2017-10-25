@@ -12,6 +12,7 @@ public abstract class Account {
 	private String state;
 	private String zip;
 	private String email;
+
 	public String getEmail() {
 		return email;
 	}
@@ -26,11 +27,11 @@ public abstract class Account {
 	public Account() {
 		entries = new ArrayList<AccountEntry>();
 	}
-	
+
 	public ArrayList<AccountEntry> getEntries() {
 		return entries;
 	}
-	
+
 	public Party getCustomer() {
 		return customer;
 	}
@@ -95,13 +96,26 @@ public abstract class Account {
 		this.balance = balance;
 	}
 
-	public void deposit(double val) {
-		this.balance = balance+val;
+	public void deposit(double val, String description) {
+		this.balance = balance + val;
+		AccountEntry entry = new AccountEntry();
+		entry.setAccount(this);
+		entry.setDescription(description);
+		entry.setValue(val);
+		entries.add(entry);
 	};
 
-	public void withdraw(double val) {
-		
-		this.balance = balance-val;
+	public void withdraw(double val, String description) {
+		this.balance = balance - val;
+		AccountEntry entry = new AccountEntry();
+		entry.setAccount(this);
+		entry.setDescription(description);
+		entry.setValue(-val);
+		entries.add(entry);
+	}
+	
+	public void addInterest() {
+		this.balance = this.balance + this.interestType.calcInterest(this.getBalance());
 	}
 
 	public InterestType getInterestType() {
