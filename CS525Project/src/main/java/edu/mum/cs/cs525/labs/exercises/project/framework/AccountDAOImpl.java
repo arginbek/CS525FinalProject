@@ -35,12 +35,4 @@ public class AccountDAOImpl implements AccountDAO {
 	public Collection<Account> getAccounts() {
 		return accounts.values();
 	}
-
-	@Override
-	public Party loadCustomer(String email) {
-		if (accounts.containsKey(email))
-			return accounts.get(email).getCustomer();
-		else
-			return null;
-	}
 }

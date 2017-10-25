@@ -8,8 +8,6 @@ public interface AccountDAO {
 	void updateAccount(Account account);
 
 	Account loadAccount(String accountnumber);
-	
-	Party loadCustomer(String email);
 
 	Collection<? extends Account> getAccounts();
 }
