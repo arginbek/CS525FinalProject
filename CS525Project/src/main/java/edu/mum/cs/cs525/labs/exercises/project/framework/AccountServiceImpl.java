@@ -6,8 +6,8 @@ public abstract class AccountServiceImpl  implements AccountService{
 		account.getInterestType().calcInterest(account.getBalance());
 	}
 
-	public void createAccount(Account account) {
-		CreateAbstractFactory caf = this.createFactory(account);
+	public void createAccount(CreateAccountTO accountTO) {
+		CreateAbstractFactory caf = this.createFactory(accountTO);
 		Account acct = caf.createAccount();
 		Party party = caf.createCustomer();
 		InterestType interestType = caf.createInterest();
@@ -33,6 +33,6 @@ public abstract class AccountServiceImpl  implements AccountService{
 		
 	}
 
-	public abstract CreateAbstractFactory createFactory(Account account);
+	public abstract CreateAbstractFactory createFactory(CreateAccountTO accountTO);
 	public abstract boolean checkNotify(Account account, double val);
 }

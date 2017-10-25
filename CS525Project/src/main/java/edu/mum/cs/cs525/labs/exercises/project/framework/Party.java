@@ -3,6 +3,7 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 import java.util.Observable;
 
 public class Party {
+	protected String name;
 	protected String street;
 	protected String city;
 	protected String state;
@@ -47,6 +48,14 @@ public class Party {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void update(Observable o, Object arg) {
