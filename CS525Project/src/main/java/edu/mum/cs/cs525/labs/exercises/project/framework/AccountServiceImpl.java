@@ -22,8 +22,10 @@ public abstract class AccountServiceImpl implements AccountService {
 		InterestType interestType = caf.createInterest();
 		acct.setInterestType(interestType);
 		Party customer = customerDAO.loadCustomer(party.getEmail());
-		if (customer == null)
+		if (customer == null) {
 			customerDAO.saveCustomer(party);
+			acct.setCustomer(party);
+		}
 		else
 			acct.setCustomer(customer);
 		accountDAO.saveAccount(acct);
