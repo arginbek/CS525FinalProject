@@ -3,9 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class JDialog_Deposit extends javax.swing.JDialog
-{
-    
-
+{   
     private CardFrm parentframe;
     private String name;
     
@@ -23,31 +21,44 @@ public class JDialog_Deposit extends javax.swing.JDialog
 		setTitle("Deposit");
 		setModal(true);
 		getContentPane().setLayout(null);
-		setSize(268,126);
+		setSize(268,160);
 		setVisible(false);
-		JLabel1.setText("Name");
+		
+		JLabel1.setText("Name");		
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(java.awt.Color.black);
 		JLabel1.setBounds(12,12,48,24);
-		JLabel2.setText("Amount");
+		
+		JLabel2.setText("Amount");		
 		getContentPane().add(JLabel2);
 		JLabel2.setForeground(java.awt.Color.black);
 		JLabel2.setBounds(12,48,48,24);
+		
+		JLabel3.setText("Description");
+		getContentPane().add(JLabel3);
+		JLabel3.setForeground(java.awt.Color.black);
+		JLabel3.setBounds(12,84,100,24);
+				
 		JTextField_NAME.setEditable(false);
 		getContentPane().add(JTextField_NAME);
 		JTextField_NAME.setBounds(84,12,144,24);
+		JTextField_NAME.setText(aname);
+		
 		JButton_OK.setText("OK");
 		JButton_OK.setActionCommand("OK");
 		getContentPane().add(JButton_OK);
-		JButton_OK.setBounds(36,84,84,24);
+		JButton_OK.setBounds(36,120,84,24);
+		
 		JButton_Cancel.setText("Cancel");
 		JButton_Cancel.setActionCommand("Cancel");
 		getContentPane().add(JButton_Cancel);
-		JButton_Cancel.setBounds(156,84,84,24);
+		JButton_Cancel.setBounds(156,120,84,24);
+		
 		getContentPane().add(JTextField_Deposit);
-		JTextField_Deposit.setBounds(84,48,144,24);
-		//}}
-	    JTextField_NAME.setText(name);
+		JTextField_Deposit.setBounds(84,48,144,24);		
+	    
+	    getContentPane().add(JTextField_Description);
+	    JTextField_Description.setBounds(84,84,144,24);		
 	    
 		//{{REGISTER_LISTENERS
 		SymAction lSymAction = new SymAction();
@@ -61,10 +72,12 @@ public class JDialog_Deposit extends javax.swing.JDialog
 	//{{DECLARE_CONTROLS
 	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
 	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
+	javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
 	javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
 	javax.swing.JButton JButton_OK = new javax.swing.JButton();
 	javax.swing.JButton JButton_Cancel = new javax.swing.JButton();
 	javax.swing.JTextField JTextField_Deposit = new javax.swing.JTextField();
+	javax.swing.JTextField JTextField_Description = new javax.swing.JTextField();
 	//}}
 
 
@@ -83,6 +96,7 @@ public class JDialog_Deposit extends javax.swing.JDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
         parentframe.amountDeposit=JTextField_Deposit.getText();
+        parentframe.description = JTextField_Description.getText();
         dispose();
 	}
 
