@@ -5,13 +5,7 @@ import edu.mum.cs.cs525.labs.exercises.project.framework.InterestType;
 public class SavingInterest implements InterestType {
 
 	public double calcInterest(double pBalance) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public double getMinimumPayment() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 0.01 * pBalance;
 	}
 
 	
