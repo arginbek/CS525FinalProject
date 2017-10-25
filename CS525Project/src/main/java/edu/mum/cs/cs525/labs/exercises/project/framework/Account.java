@@ -1,5 +1,6 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Account {
@@ -13,7 +14,13 @@ public abstract class Account {
 	private String zip;
 	private String email;
 	private double minThreshold = 0;
+	private double balance;
+	private ArrayList<AccountEntry> entries;
 
+	public Account() {
+		entries = new ArrayList<AccountEntry>();
+	}
+	
 	public double getMinThreshold() {
 		return minThreshold;
 	}
@@ -28,13 +35,6 @@ public abstract class Account {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	private double balance;
-	private ArrayList<AccountEntry> entries;
-
-	public Account() {
-		entries = new ArrayList<AccountEntry>();
 	}
 
 	public ArrayList<AccountEntry> getEntries() {
@@ -105,10 +105,19 @@ public abstract class Account {
 		this.balance = balance;
 	}
 
+	public InterestType getInterestType() {
+		return interestType;
+	}
+
+	public void setInterestType(InterestType interestType) {
+		this.interestType = interestType;
+	}
+	
 	public void deposit(double val, String description) {
 		this.balance = balance + val;
 		AccountEntry entry = new AccountEntry();
-		entry.setAccount(this);
+		entry.setAccountName(this.getName());
+		entry.setAccountNumber(this.getAccountNumber());
 		entry.setDescription(description);
 		entry.setValue(val);
 		entries.add(entry);
@@ -118,7 +127,8 @@ public abstract class Account {
 		if (balance - val >= minThreshold) {
 			this.balance = balance - val;
 			AccountEntry entry = new AccountEntry();
-			entry.setAccount(this);
+			entry.setAccountName(this.getName());
+			entry.setAccountNumber(this.getAccountNumber());
 			entry.setDescription(description);
 			entry.setValue(-val);
 			entries.add(entry);
@@ -128,13 +138,5 @@ public abstract class Account {
 	public void addInterest() {
 		this.balance = this.balance + this.interestType.calcInterest(this.getBalance());
 	}
-
-	public InterestType getInterestType() {
-		return interestType;
-	}
-
-	public void setInterestType(InterestType interestType) {
-		this.interestType = interestType;
-	};
 
 }

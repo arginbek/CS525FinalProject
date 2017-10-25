@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Person extends Party implements Observer {
+public class Person extends Party {
 	LocalDate birthDate;
 	
 }

@@ -2,7 +2,7 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 import java.util.Observable;
 
-public class Party {
+public abstract class Party implements Observer {
 	protected String name;
 	protected String street;
 	protected String city;

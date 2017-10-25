@@ -7,7 +7,7 @@ public abstract class AccountServiceImpl implements AccountService {
 	private CustomerDAO customerDAO;
 
 	public AccountServiceImpl() {
-		accountDAO = new AccountDAOImpl();
+		accountDAO = AccountDAOImpl.getInstance();
 		customerDAO = new CustomerDAOImpl();
 	}
 
