@@ -6,12 +6,17 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
 
-
+import edu.mum.cs.cs525.labs.exercises.project.framework.*;
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankCreateAccountTO;
+import edu.mum.cs.cs525.labs.exercises.project.bank.CreateFactoryBank;
+import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;
 
 public class JDialog_AddPAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
+    private BankCreateAccountTO accountTO;
     
 	public JDialog_AddPAcc(BankFrm parent)
 	{
@@ -175,17 +180,36 @@ public class JDialog_AddPAcc extends javax.swing.JDialog
 
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
+		
+		 accountTO =  new BankCreateAccountTO();
+			
+		   accountTO.setAccountNumber(JTextField_ACNR.getText());
+		   accountTO.setName(JTextField_NAME.getText());
+		   accountTO.setCity(JTextField_CT.getText());
+		   accountTO.setCustomer(JTextField_NAME.getText());
+		   accountTO.setStreet(JTextField_STR.getText());
+		   accountTO.setZip(JTextField_ZIP.getText());
+		   accountTO.setState(JTextField_ST.getText());   
+		   accountTO.setAccountType(AccountType.company);
+		   accountTO.setEmail(JTextField_EM.getText());
+		
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();
        parentframe.street=JTextField_STR.getText();
        parentframe.city=JTextField_CT.getText();
        parentframe.zip=JTextField_ZIP.getText();
        parentframe.state=JTextField_ST.getText();
-       if (JRadioButton_Chk.isSelected())
+       if (JRadioButton_Chk.isSelected()) {
            parentframe.accountType="Ch";
-           else
-           parentframe.accountType="S";
+       accountTO.setInterestType("Checking");}
+           else {
+        	   accountTO.setInterestType("Saving");
+           parentframe.accountType="S";}
 	   parentframe.newaccount=true;
+	   BankAccountService accountService = new BankAccountService();
+	   accountService.createAccount(accountTO);
+	   //CreateFactoryBank factory = new CreateFactoryBank(accountTO);
+       //factory.createAccount();
        dispose();
 	}
 

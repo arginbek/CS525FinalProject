@@ -5,9 +5,4 @@ import java.util.Observer;
 
 public class Company extends Party {
 
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

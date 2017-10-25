@@ -6,5 +6,7 @@ import java.util.Observer;
 
 public class Person extends Party {
 	LocalDate birthDate;
-	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
 }

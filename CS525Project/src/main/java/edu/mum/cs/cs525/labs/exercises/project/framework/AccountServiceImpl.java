@@ -1,8 +1,9 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 import java.util.List;
+import java.util.Observable;
 
-public abstract class AccountServiceImpl implements AccountService {
+public abstract class AccountServiceImpl extends Observable implements AccountService {
 	private AccountDAO accountDAO;
 	private CustomerDAO customerDAO;
 
@@ -22,12 +23,17 @@ public abstract class AccountServiceImpl implements AccountService {
 		InterestType interestType = caf.createInterest();
 		acct.setInterestType(interestType);
 		Party customer = customerDAO.loadCustomer(party.getEmail());
+
+		
 		if (customer == null) {
 			customerDAO.saveCustomer(party);
 			acct.setCustomer(party);
+      this.addObserver(party);
 		}
-		else
+		else {
 			acct.setCustomer(customer);
+      this.addObserver(customer);
+    }
 		accountDAO.saveAccount(acct);
 	}
 
@@ -35,18 +41,14 @@ public abstract class AccountServiceImpl implements AccountService {
 		account.deposit(val, description);
 		accountDAO.updateAccount(account);
 		if (checkNotify(account, val))
-			notifyObservers();
+			notifyObservers(new TransactionSender(account, val, description));
 	}
 
 	public void withdraw(Account account, double val, String description) {
 		account.withdraw(val, description);
 		accountDAO.updateAccount(account);
 		if (checkNotify(account, val))
-			notifyObservers();
-	}
-
-	public void notifyObservers() {
-
+			notifyObservers(new TransactionSender(account, val, description));
 	}
 	
 	public List<? extends Account> getAccounts(){
