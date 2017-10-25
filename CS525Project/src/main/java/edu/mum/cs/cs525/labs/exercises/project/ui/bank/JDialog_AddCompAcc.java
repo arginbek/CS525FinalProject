@@ -5,6 +5,7 @@ import javax.security.auth.login.AccountNotFoundException;
 import javax.swing.*;
 
 import edu.mum.cs.cs525.labs.exercises.project.framework.*;
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankAccountService;
 import edu.mum.cs.cs525.labs.exercises.project.bank.BankCreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.bank.CreateFactoryBank;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
@@ -168,8 +169,8 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
            else {
         	   accountTO.setInterestType("Checking");
            parentframe.accountType="S";}
-       CreateFactoryBank factory = new CreateFactoryBank(accountTO);
-       factory.createAccount();
+       BankAccountService accountService = new BankAccountService();
+	   accountService.createAccount(accountTO);
 	   parentframe.newaccount=true;
 	   dispose();
 			 
