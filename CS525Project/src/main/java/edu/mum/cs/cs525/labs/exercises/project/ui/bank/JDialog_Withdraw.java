@@ -1,16 +1,17 @@
 package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
+import bank.MainFrm;
 
 
 
 public class JDialog_Withdraw extends javax.swing.JDialog
 {
    
-    private BankFrm parentframe;
+    private MainFrm parentframe;
     private String accnr;
 
-	public JDialog_Withdraw(BankFrm parent, String aaccnr)
+	public JDialog_Withdraw(MainFrm parent, String aaccnr)
 	{
 		super(parent);
 		parentframe=parent;

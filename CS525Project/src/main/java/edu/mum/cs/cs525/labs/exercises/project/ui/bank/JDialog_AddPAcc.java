@@ -6,6 +6,8 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
 
+import bank.MainFrm;
+
 public class JDialog_AddPAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;

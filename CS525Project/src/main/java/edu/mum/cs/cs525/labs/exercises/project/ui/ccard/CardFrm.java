@@ -8,42 +8,54 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
+import bank.MainFrm;
+
+
+
 /**
  * A basic JFC based application.
  */
-public class CardFrm extends javax.swing.JFrame
+public class CardFrm extends MainFrm
 {
     /****
      * init variables in the object
      ****/
-    String clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber;
+    String expdate, ccnumber;
     boolean newaccount;
-    private DefaultTableModel model;
-    private JTable JTable1;
-    private JScrollPane JScrollPane1;
-    CardFrm thisframe;
-    private Object rowdata[];
+//    private DefaultTableModel model;
+//    private JTable JTable1;
+//    private JScrollPane JScrollPane1;
+     CardFrm myframe;
+//    private Object rowdata[];
+     
+     
+ 	//javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
+ 	javax.swing.JButton JButton_NewCCAccount = new javax.swing.JButton();
+ 	javax.swing.JButton JButton_GenBill = new javax.swing.JButton();
+ 	//javax.swing.JButton JButton_Deposit = new javax.swing.JButton();
+ 	//javax.swing.JButton JButton_Withdraw = new javax.swing.JButton();
+ 	//javax.swing.JButton JButton_Exit = new javax.swing.JButton();
     
 	public CardFrm()
 	{
-		thisframe=this;
+		super();
+		myframe=this;
 		
 		setTitle("Credit-card processing Application.");
-		setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
-		getContentPane().setLayout(new BorderLayout(0,0));
-		setSize(575,310);
-		setVisible(false);
-		JPanel1.setLayout(null);
-		getContentPane().add(BorderLayout.CENTER, JPanel1);
-		JPanel1.setBounds(0,0,575,310);
+	//	setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
+		//getContentPane().setLayout(new BorderLayout(0,0));
+		//setSize(575,310);
+		//setVisible(false);
+		//JPanel1.setLayout(null);
+		//getContentPane().add(BorderLayout.CENTER, JPanel1);
+		//JPanel1.setBounds(0,0,575,310);
 		/*
 		/Add five buttons on the pane 
 		/for Adding personal account, Adding company account
 		/Deposit, Withdraw and Exit from the system
 		*/
-        JScrollPane1 = new JScrollPane();
+       // JScrollPane1 = new JScrollPane();
         model = new DefaultTableModel();
-        JTable1 = new JTable(model);
         model.addColumn("Name");
         model.addColumn("CC number");
         model.addColumn("Exp date");
@@ -51,10 +63,11 @@ public class CardFrm extends javax.swing.JFrame
         model.addColumn("Balance");
         rowdata = new Object[7];
         newaccount=false;
+        JTable1 = new JTable(model);
         
         
         JPanel1.add(JScrollPane1);
-        JScrollPane1.setBounds(12,92,444,160);
+        //JScrollPane1.setBounds(12,92,444,160);
         JScrollPane1.getViewport().add(JTable1);
         JTable1.setBounds(0, 0, 420, 0);
 //        rowdata = new Object[8];
@@ -66,18 +79,18 @@ public class CardFrm extends javax.swing.JFrame
 		JButton_GenBill.setActionCommand("jbutton");
 		JPanel1.add(JButton_GenBill);
 		JButton_GenBill.setBounds(240,20,192,33);
-		JButton_Deposit.setText("Deposit");
-		JPanel1.add(JButton_Deposit);
-		JButton_Deposit.setBounds(468,104,96,33);
+//		JButton_Deposit.setText("Deposit");
+//		JPanel1.add(JButton_Deposit);
+//		JButton_Deposit.setBounds(468,104,96,33);
 		JButton_Withdraw.setText("Charge");
-		JPanel1.add(JButton_Withdraw);
-		JButton_Withdraw.setBounds(468,164,96,33);
-		JButton_Exit.setText("Exit");
-		JPanel1.add(JButton_Exit);
-		JButton_Exit.setBounds(468,248,96,31);
+//		JPanel1.add(JButton_Withdraw);
+//		JButton_Withdraw.setBounds(468,164,96,33);
+//		JButton_Exit.setText("Exit");
+//		JPanel1.add(JButton_Exit);
+//		JButton_Exit.setBounds(468,248,96,31);
 
 
-		JButton_GenBill.setActionCommand("jbutton");
+		//JButton_GenBill.setActionCommand("jbutton");
 
 		SymWindow aSymWindow = new SymWindow();
 		this.addWindowListener(aSymWindow);
@@ -119,15 +132,10 @@ public class CardFrm extends javax.swing.JFrame
 	}
 
 
-	javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
-	javax.swing.JButton JButton_NewCCAccount = new javax.swing.JButton();
-	javax.swing.JButton JButton_GenBill = new javax.swing.JButton();
-	javax.swing.JButton JButton_Deposit = new javax.swing.JButton();
-	javax.swing.JButton JButton_Withdraw = new javax.swing.JButton();
-	javax.swing.JButton JButton_Exit = new javax.swing.JButton();
 
 
-	void exitApplication()
+
+	protected void exitApplication()
 	{
 		try {
 		    	this.setVisible(false);    // hide the Frame
@@ -182,10 +190,10 @@ public class CardFrm extends javax.swing.JFrame
     
     //When the Exit button is pressed this code gets executed
     //this will exit from the system
-    void JButtonExit_actionPerformed(java.awt.event.ActionEvent event)
-	{
-		System.exit(0);
-	}
+//    protected void JButtonExit_actionPerformed(java.awt.event.ActionEvent event)
+//	{
+//		System.exit(0);
+//	}
 
 	void JButtonNewCCAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
@@ -195,7 +203,7 @@ public class CardFrm extends javax.swing.JFrame
 		 set the boundaries and show it 
 		*/
 		
-		JDialog_AddCCAccount ccac = new JDialog_AddCCAccount(thisframe);
+		JDialog_AddCCAccount ccac = new JDialog_AddCCAccount(myframe);
 		ccac.setBounds(450, 20, 300, 380);
 		ccac.show();
 
@@ -223,53 +231,53 @@ public class CardFrm extends javax.swing.JFrame
 	    
 	}
 
-	void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
-	{
-	    // get selected name
-        int selection = JTable1.getSelectionModel().getMinSelectionIndex();
-        if (selection >=0){
-            String name = (String)model.getValueAt(selection, 0);
-    	    
-		    //Show the dialog for adding deposit amount for the current mane
-		    JDialog_Deposit dep = new JDialog_Deposit(thisframe,name);
-		    dep.setBounds(430, 15, 275, 140);
-		    dep.show();
-    		
-		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 4);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount+deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 4);
-		}
-		
-		
-	}
+//	void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
+//	{
+//	    // get selected name
+//        int selection = JTable1.getSelectionModel().getMinSelectionIndex();
+//        if (selection >=0){
+//            String name = (String)model.getValueAt(selection, 0);
+//    	    
+//		    //Show the dialog for adding deposit amount for the current mane
+//		    JDialog_Deposit dep = new JDialog_Deposit(myframe,name);
+//		    dep.setBounds(430, 15, 275, 140);
+//		    dep.show();
+//    		
+//		    // compute new amount
+//            long deposit = Long.parseLong(amountDeposit);
+//            String samount = (String)model.getValueAt(selection, 4);
+//            long currentamount = Long.parseLong(samount);
+//		    long newamount=currentamount+deposit;
+//		    model.setValueAt(String.valueOf(newamount),selection, 4);
+//		}
+//		
+//		
+//	}
 
-	void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
-	{
-	    // get selected name
-        int selection = JTable1.getSelectionModel().getMinSelectionIndex();
-        if (selection >=0){
-            String name = (String)model.getValueAt(selection, 0);
-
-		    //Show the dialog for adding withdraw amount for the current mane
-		    JDialog_Withdraw wd = new JDialog_Withdraw(thisframe,name);
-		    wd.setBounds(430, 15, 275, 140);
-		    wd.show();
-    		
-		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 4);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount-deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 4);
-		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " "+name+" Your balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
-		    }
-		}
-		
-		
-	}
+//	void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
+//	{
+//	    // get selected name
+//        int selection = JTable1.getSelectionModel().getMinSelectionIndex();
+//        if (selection >=0){
+//            String name = (String)model.getValueAt(selection, 0);
+//
+//		    //Show the dialog for adding withdraw amount for the current mane
+//		    JDialog_Withdraw wd = new JDialog_Withdraw(thisframe,name);
+//		    wd.setBounds(430, 15, 275, 140);
+//		    wd.show();
+//    		
+//		    // compute new amount
+//            long deposit = Long.parseLong(amountDeposit);
+//            String samount = (String)model.getValueAt(selection, 4);
+//            long currentamount = Long.parseLong(samount);
+//		    long newamount=currentamount-deposit;
+//		    model.setValueAt(String.valueOf(newamount),selection, 4);
+//		    if (newamount <0){
+//		       JOptionPane.showMessageDialog(JButton_Withdraw, " "+name+" Your balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
+//		    }
+//		}
+//		
+//		
+//	}
 	
 }
