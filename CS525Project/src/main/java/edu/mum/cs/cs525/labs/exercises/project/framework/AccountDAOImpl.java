@@ -17,17 +17,18 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	public void updateAccount(Account account) {
-		// TODO Auto-generated method stub
+		accounts.put(account.getAccountNumber(), account);
 
 	}
 
 	public Account loadAccount(String accountnumber) {
-		// TODO Auto-generated method stub
-		return null;
+		if(accounts.containsKey(accountnumber))
+			return accounts.get(accountnumber);
+		else
+			return null;
 	}
 
 	public Collection<Account> getAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+		return accounts.values();
 	}
 }
