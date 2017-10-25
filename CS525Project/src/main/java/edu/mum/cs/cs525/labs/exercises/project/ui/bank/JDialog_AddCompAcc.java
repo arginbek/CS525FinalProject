@@ -1,6 +1,11 @@
 package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
+
+import javax.security.auth.login.AccountNotFoundException;
 import javax.swing.*;
+
+import edu.mum.cs.cs525.labs.exercises.project.bank.CreateFactoryBank;
+import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 
 //import bank.MainFrm;
 
@@ -9,6 +14,7 @@ import javax.swing.*;
 public class JDialog_AddCompAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
+    private CreateAccountTO accountTO;
     
 	public JDialog_AddCompAcc(BankFrm parent)
 	{
@@ -138,16 +144,29 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
+		
+	  accountTO =  new CreateAccountTO();
+		
+	   accountTO.setAccountNumber(JTextField_ACNR.getText());
+	   accountTO.setCity(JTextField_CT.getText());
+	   accountTO.setCustomer(JTextField_NAME.getText());
+	   accountTO.setStreet(JTextField_STR.getText());
+	   accountTO.setZip(JTextField_ZIP.getText());
+	   accountTO.setState(JTextField_ST.getText());
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();
        parentframe.street=JTextField_STR.getText();
        parentframe.city=JTextField_CT.getText();
        parentframe.zip=JTextField_ZIP.getText();
        parentframe.state=JTextField_ST.getText();
-       if (JRadioButton_Chk.isSelected())
-           parentframe.accountType="Ch";
-           else
-           parentframe.accountType="S";
+       if (JRadioButton_Chk.isSelected()) {
+    	   accountTO.setInterestType("Checking");
+           parentframe.accountType="Ch";}
+           else {
+        	   accountTO.setInterestType("Checking");
+           parentframe.accountType="S";}
+       CreateFactoryBank factory = new CreateFactoryBank(accountTO);
+       factory.createAccount();
 	   parentframe.newaccount=true;
 	   dispose();
 			 

@@ -10,5 +10,5 @@ public interface AccountDAO {
 
 	Account loadAccount(String accountnumber);
 
-	Collection<? extends Account> getAccounts();
+	List<? extends Account> getAccounts();
 }

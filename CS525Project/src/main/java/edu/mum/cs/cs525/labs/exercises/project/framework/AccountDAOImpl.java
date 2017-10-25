@@ -47,7 +47,7 @@ public class AccountDAOImpl implements AccountDAO {
 			return null;
 	}
 
-	public Collection<Account> getAccounts() {
-		return accounts.values();
+	public List<Account> getAccounts() {
+		return new ArrayList<>(accounts.values());
 	}
 }
