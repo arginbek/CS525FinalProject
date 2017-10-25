@@ -8,7 +8,8 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-import bank.MainFrm;
+
+import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;
 
 
 

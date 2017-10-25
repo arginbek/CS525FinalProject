@@ -1,7 +1,8 @@
 package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
-import bank.MainFrm;
+
+import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;
 
 
 

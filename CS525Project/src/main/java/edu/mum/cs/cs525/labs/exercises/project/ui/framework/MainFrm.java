@@ -1,11 +1,11 @@
-package bank;
+package edu.mum.cs.cs525.labs.exercises.project.ui.framework;
 
 import java.awt.BorderLayout;
 
 import javax.swing.table.DefaultTableModel;
-
-import edu.mum.cs.cs525.labs.exercises.project.ui.bank.JDialog_Deposit;
-import edu.mum.cs.cs525.labs.exercises.project.ui.bank.JDialog_Withdraw;
+//
+import edu.mum.cs.cs525.labs.exercises.project.ui.bank.*;
+//import edu.mum.cs.cs525.labs.exercises.project.ui.bank.JDialog_Withdraw;
 
 //import edu.mum.cs.cs525.labs.exercises.project.ui.ccard.JDialog_Withdraw;
 
