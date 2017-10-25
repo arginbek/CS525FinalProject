@@ -3,7 +3,7 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 public abstract class AccountServiceImpl  implements AccountService{
 
 	public void addInterest(Account account) {
-		
+		account.getInterestType().calcInterest(account.getBalance());
 	}
 
 	public void createAccount(Account account) {
@@ -16,7 +16,7 @@ public abstract class AccountServiceImpl  implements AccountService{
 	}
 
 	public void deposit(Account account, double val) {
-		account.deposit();
+		account.deposit(val);
 		if (checkNotify(account, val))
 			notifyObservers();
 		
@@ -24,7 +24,7 @@ public abstract class AccountServiceImpl  implements AccountService{
 	
 
 	public void withdraw(Account account, double val) {
-		account.withdraw();
+		account.withdraw(val);
 		if (checkNotify(account, val))
 			notifyObservers();
 	}

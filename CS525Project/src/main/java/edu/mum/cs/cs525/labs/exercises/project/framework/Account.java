@@ -11,6 +11,15 @@ public abstract class Account {
 	private String city;
 	private String state;
 	private String zip;
+	private String email;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	private double balance;
 	private ArrayList<AccountEntry> entries;
 
@@ -86,10 +95,13 @@ public abstract class Account {
 		this.balance = balance;
 	}
 
-	public void deposit() {
+	public void deposit(double val) {
+		this.balance = balance+val;
 	};
 
-	public void withdraw() {
+	public void withdraw(double val) {
+		
+		this.balance = balance-val;
 	}
 
 	public InterestType getInterestType() {
