@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.security.auth.login.AccountNotFoundException;
 import javax.swing.*;
 
+import edu.mum.cs.cs525.labs.exercises.project.bank.AccountType;
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankCreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.bank.CreateFactoryBank;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 
@@ -14,7 +16,7 @@ import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 public class JDialog_AddCompAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
-    private CreateAccountTO accountTO;
+    private BankCreateAccountTO accountTO;
     
 	public JDialog_AddCompAcc(BankFrm parent)
 	{
@@ -145,7 +147,7 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		
-	  accountTO =  new CreateAccountTO();
+	   accountTO =  new BankCreateAccountTO();
 		
 	   accountTO.setAccountNumber(JTextField_ACNR.getText());
 	   accountTO.setCity(JTextField_CT.getText());
@@ -153,6 +155,7 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 	   accountTO.setStreet(JTextField_STR.getText());
 	   accountTO.setZip(JTextField_ZIP.getText());
 	   accountTO.setState(JTextField_ST.getText());
+	   accountTO.setAccountType(AccountType.company);
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();
        parentframe.street=JTextField_STR.getText();
