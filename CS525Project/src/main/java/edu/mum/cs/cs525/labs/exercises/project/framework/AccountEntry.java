@@ -48,4 +48,12 @@ public class AccountEntry {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 }
