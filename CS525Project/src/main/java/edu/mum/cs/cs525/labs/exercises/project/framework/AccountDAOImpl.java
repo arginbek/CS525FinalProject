@@ -12,17 +12,21 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	public void saveAccount(Account account) {
-		if(account == null || account.getAccountNumber() == null)
+		if (account == null || account.getAccountNumber() == null)
 			throw new IllegalArgumentException();
+		else
+			accounts.put(account.getAccountNumber(), account);
 	}
 
 	public void updateAccount(Account account) {
+		if (account == null || account.getAccountNumber() == null)
+			throw new IllegalArgumentException();
+		else
 		accounts.put(account.getAccountNumber(), account);
-
 	}
 
 	public Account loadAccount(String accountnumber) {
-		if(accounts.containsKey(accountnumber))
+		if (accounts.containsKey(accountnumber))
 			return accounts.get(accountnumber);
 		else
 			return null;
@@ -34,7 +38,7 @@ public class AccountDAOImpl implements AccountDAO {
 
 	@Override
 	public Party loadCustomer(String email) {
-		if(accounts.containsKey(email))
+		if (accounts.containsKey(email))
 			return accounts.get(email).getCustomer();
 		else
 			return null;

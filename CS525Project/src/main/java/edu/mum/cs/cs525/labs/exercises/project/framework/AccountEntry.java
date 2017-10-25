@@ -3,26 +3,17 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 import java.time.LocalDate;
 
 public class AccountEntry {
-	String accountNumber;
-	String accuntName;
+	Account account;
 	double value;
 	String description;
 	LocalDate date;
 
-	public String getAccountNumber() {
-		return accountNumber;
+	public Account getAccount() {
+		return this.account;
 	}
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public String getAccuntName() {
-		return accuntName;
-	}
-
-	public void setAccuntName(String accuntName) {
-		this.accuntName = accuntName;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public double getValue() {
