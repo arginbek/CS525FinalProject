@@ -1,17 +1,15 @@
 package edu.mum.cs.cs525.labs.exercises.project.creditcard;
 
-import edu.mum.cs.cs525.labs.exercises.project.framework.InterestType;
+public class Silver extends CreditCardInterestType {
 
-public class Silver implements InterestType {
-
-	public double getMinimumPayment() {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override
+	public double getMinimumPayment(double balance) {
+		return 0.12 * balance;
 	}
 
-	public double calcInterest(double pBalance) {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override
+	public double calcInterest(double balance) {
+		return 0.8 * balance;
 	}
 
 }
