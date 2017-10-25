@@ -1,7 +1,9 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AccountDAOImpl implements AccountDAO {
@@ -32,7 +34,7 @@ public class AccountDAOImpl implements AccountDAO {
 			return null;
 	}
 
-	public Collection<Account> getAccounts() {
-		return accounts.values();
+	public List<Account> getAccounts() {
+		return new ArrayList<>(accounts.values());
 	}
 }
