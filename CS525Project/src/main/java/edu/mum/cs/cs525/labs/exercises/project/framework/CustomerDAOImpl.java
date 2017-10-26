@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	Map<String, Party> customers = new HashMap<String, Party>();
-	public static CustomerDAOImpl instance;
+	private static CustomerDAOImpl instance;
 	private CustomerDAOImpl() {
 
 	}
