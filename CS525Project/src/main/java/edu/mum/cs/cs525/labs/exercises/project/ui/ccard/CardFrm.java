@@ -267,7 +267,7 @@ public class CardFrm extends MainFrm {
 			long deposit = Long.parseLong(amountDeposit);
 			AccountServiceImpl accountService = new CreditCardAccountService();
 			Account account = accountService.getAccount(ccnumber);
-			if (deposit > account.getMinThreshold()) {
+			if (deposit > account.getMinThreshold() + account.getBalance()) {
 				JOptionPane.showMessageDialog(JButton_Withdraw, name + "... Your balance is $"
 						+ String.valueOf(account.getBalance()) + ". Withdraw exceed minimum balance!!!", "",
 						JOptionPane.WARNING_MESSAGE);
