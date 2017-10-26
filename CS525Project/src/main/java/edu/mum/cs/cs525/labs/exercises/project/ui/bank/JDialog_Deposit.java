@@ -14,8 +14,10 @@ public class JDialog_Deposit extends JDialog_Deposit_Main
 
 	}
 
+	@Override
 	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
-        super.parentframe.amountDeposit=super.JTextField_Deposit.getText();
+		System.out.println("Something went here?");
+        parentframe.amountDeposit= JTextField_Deposit.getText();
 		AccountService accountService = new BankAccountService();
 		accountService.deposit(super.JTextField_NAME.getText(), Double.valueOf(JTextField_Deposit.getText()), "Deposit");
 
