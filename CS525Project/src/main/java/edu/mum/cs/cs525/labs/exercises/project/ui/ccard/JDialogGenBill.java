@@ -56,7 +56,7 @@ public class JDialogGenBill extends javax.swing.JDialog
 			rowdata[2] = report.getIncoming();
 			rowdata[3] = report.getOutcoming();
 			rowdata[4] = report.getTotal();
-			rowdata[5] = report.getMinimumPayment();
+			rowdata[5] = Math.round(report.getMinimumPayment() * 100.0 ) / 100.0;
 			rowdata[6] = report.getStart();
 			rowdata[7] = report.getEnd();			
 			model.addRow(rowdata);
