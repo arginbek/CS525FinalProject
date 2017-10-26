@@ -2,6 +2,8 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
 import java.awt.*;
 import javax.swing.*;
 
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountService;
 import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;
 
 
@@ -84,8 +86,10 @@ public class JDialog_Withdraw extends javax.swing.JDialog
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
-	{
+	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
+
+		AccountService accountService = new BankAccountService();
+		accountService.withdraw(JTextField_NAME.getText(), Double.valueOf(JTextField_AMT.getText()), "withdraw");
         parentframe.amountDeposit=JTextField_AMT.getText();
 		dispose();
 	}

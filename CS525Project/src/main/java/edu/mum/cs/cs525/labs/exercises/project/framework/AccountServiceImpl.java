@@ -35,18 +35,24 @@ public abstract class AccountServiceImpl extends Observable implements AccountSe
 		accountDAO.saveAccount(acct);
 	}
 
-	public void deposit(Account account, double val, String description) {
+	public void deposit(String accountNumber, double val, String description) {
+		Account account = getAccount(accountNumber);
 		account.deposit(val, description);
 		accountDAO.updateAccount(account);
 		if (checkNotify(account, val))
 			notifyObservers(new TransactionSender(account, val, description));
 	}
 
-	public void withdraw(Account account, double val, String description) {
+	public void withdraw(String accountNumber, double val, String description) {
+		Account account = getAccount(accountNumber);
 		account.withdraw(val, description);
 		accountDAO.updateAccount(account);
 		if (checkNotify(account, val))
 			notifyObservers(new TransactionSender(account, val, description));
+	}
+
+	public Account getAccount(String accountNumber) {
+		return accountDAO.loadAccount(accountNumber);
 	}
 
 	public List<? extends Account> getAccounts() {
