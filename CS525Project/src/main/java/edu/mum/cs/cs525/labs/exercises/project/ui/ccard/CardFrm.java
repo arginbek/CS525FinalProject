@@ -235,11 +235,8 @@ public class CardFrm extends MainFrm {
 			long currentamount = Long.parseLong(samount);
 			long newamount = currentamount + deposit;
 			model.setValueAt(String.valueOf(newamount), selection, 4);
-			AccountDAO dao = AccountDAOImpl.getInstance();
-			Account account = dao.loadAccount(ccnumber);
-			System.out.println(account);
 			AccountService accountService = new CreditCardAccountService();
-			accountService.deposit(account, Double.parseDouble(amountDeposit), description);
+			accountService.deposit(ccnumber, Double.parseDouble(amountDeposit), description);
 		}
 	}
 
@@ -260,11 +257,8 @@ public class CardFrm extends MainFrm {
 			long currentamount = Long.parseLong(samount);
 			long newamount = currentamount - deposit;
 			model.setValueAt(String.valueOf(newamount), selection, 4);
-			AccountDAO dao = AccountDAOImpl.getInstance();
-			Account account = dao.loadAccount(ccnumber);
-			System.out.println(account);
 			AccountService accountService = new CreditCardAccountService();
-			accountService.withdraw(account, deposit, description);
+			accountService.withdraw(ccnumber, deposit, description);
 			if (newamount < 0) {
 				JOptionPane.showMessageDialog(JButton_Withdraw, name + "... Your balance is negative: $"
 						+ String.valueOf(newamount) + " !Warning: negative balance", "", JOptionPane.WARNING_MESSAGE);

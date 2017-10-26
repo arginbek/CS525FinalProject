@@ -1,9 +1,11 @@
 package edu.mum.cs.cs525.labs.exercises.project.ui.bank;
-import java.awt.*;
-import javax.swing.*;
 
 
-
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.Account;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountDAOImpl;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountServiceImpl;
 import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;
 
 public class JDialog_Deposit extends javax.swing.JDialog
@@ -84,9 +86,11 @@ public class JDialog_Deposit extends javax.swing.JDialog
 		}
 	}
 
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
-	{
+	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event) {
         parentframe.amountDeposit=JTextField_Deposit.getText();
+		AccountService accountService = new BankAccountService();
+		accountService.deposit(JTextField_NAME.getText(), Double.valueOf(JTextField_Deposit.getText()), "Deposit");
+
         dispose();
 	}
 
