@@ -139,6 +139,7 @@ public abstract class Account {
 
 	public void addInterest() {
 		this.balance = this.balance + this.interestType.calcInterest(this.getBalance());
+		
 	}
 
 }

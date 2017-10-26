@@ -47,7 +47,7 @@ public class BankAccountService extends AccountServiceImpl {
 		LocalDate start = lastMonth.withDayOfMonth(1);
 		LocalDate end = lastMonth.withDayOfMonth(lastMonth.lengthOfMonth());
 		List<Report> report = new ArrayList<>();
-
+        
 		for (Account account : AccountDAOImpl.getInstance().getAccounts()) {
 			double totalDeposit = 0;
 			double totalWithdraw = 0;
