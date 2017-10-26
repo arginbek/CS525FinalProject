@@ -1,9 +1,4 @@
 package edu.mum.cs.cs525.labs.exercises.project.ui.framework;
-import java.awt.*;
-import javax.swing.*;
-
-
-import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;
 
 public class JDialog_Deposit_Main extends javax.swing.JDialog
 {
@@ -62,12 +57,12 @@ public class JDialog_Deposit_Main extends javax.swing.JDialog
 
 
 	//{{DECLARE_CONTROLS
-	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
-	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
-	javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
-	javax.swing.JButton JButton_OK = new javax.swing.JButton();
-	javax.swing.JButton JButton_Cancel = new javax.swing.JButton();
-	javax.swing.JTextField JTextField_Deposit = new javax.swing.JTextField();
+	protected javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
+	protected javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
+	protected javax.swing.JTextField JTextField_NAME = new javax.swing.JTextField();
+	protected javax.swing.JButton JButton_OK = new javax.swing.JButton();
+	protected javax.swing.JButton JButton_Cancel = new javax.swing.JButton();
+	protected javax.swing.JTextField JTextField_Deposit = new javax.swing.JTextField();
 	//}}
 
 
@@ -82,11 +77,11 @@ public class JDialog_Deposit_Main extends javax.swing.JDialog
 				JButtonCalcel_actionPerformed(event);
 		}
 	}
-
-	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
+    
+	
+	protected void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
-        parentframe.amountDeposit=JTextField_Deposit.getText();
-        dispose();
+		
 	}
 
 	void JButtonCalcel_actionPerformed(java.awt.event.ActionEvent event)
