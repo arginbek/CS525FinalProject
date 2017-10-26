@@ -9,6 +9,7 @@ import edu.mum.cs.cs525.labs.exercises.project.framework.AccountServiceImpl;
 import edu.mum.cs.cs525.labs.exercises.project.framework.AccountType;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAbstractFactory;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
+import edu.mum.cs.cs525.labs.exercises.project.ui.bank.JDialogGenBill;
 import edu.mum.cs.cs525.labs.exercises.project.ui.framework.*;//.MainFrm;
 import edu.mum.cs.cs525.labs.exercises.project.bank.*;
 
@@ -29,6 +30,8 @@ public class BankFrm extends MainFrm {
 	javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
 	javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
 	javax.swing.JButton JButton_Addinterest = new javax.swing.JButton();
+	javax.swing.JButton JButton_GenBill = new javax.swing.JButton();
+	
 
 	BankFrm myframe;
 
@@ -62,6 +65,12 @@ public class BankFrm extends MainFrm {
 		JButton_Addinterest.setBounds(448, 20, 106, 33);
 		JButton_Addinterest.setText("Add interest");
 		JPanel1.add(JButton_Addinterest);
+		
+		
+		JButton_GenBill.setText("Generate Monthly bills");
+		JButton_GenBill.setActionCommand("jbutton");
+		JPanel1.add(JButton_GenBill);
+		JButton_GenBill.setBounds(140, 50, 192, 33);
 
 		SymWindow aSymWindow = new SymWindow();
 		this.addWindowListener(aSymWindow);
@@ -72,6 +81,7 @@ public class BankFrm extends MainFrm {
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
 		JButton_Addinterest.addActionListener(lSymAction);
+		JButton_GenBill.addActionListener(lSymAction);
 
 	}
 
@@ -143,6 +153,8 @@ public class BankFrm extends MainFrm {
 				JButtonWithdraw_actionPerformed(event);
 			else if (object == JButton_Addinterest)
 				JButtonAddinterest_actionPerformed(event);
+			else if (object == JButton_GenBill)
+				JButtonGenerateBill_actionPerformed(event);
 
 		}
 	}
@@ -224,4 +236,12 @@ public class BankFrm extends MainFrm {
 
 		fillTable();
 	}
+	
+	void JButtonGenerateBill_actionPerformed(java.awt.event.ActionEvent event) {
+		JDialogGenBill billFrm = new JDialogGenBill();
+		//billFrm.setBounds(450, 20, 400, 350);
+		billFrm.setLocationRelativeTo(null);
+		billFrm.show();
+	}
+
 }
