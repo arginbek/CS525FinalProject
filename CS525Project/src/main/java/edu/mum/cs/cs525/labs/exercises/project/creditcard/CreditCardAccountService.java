@@ -41,7 +41,7 @@ public class CreditCardAccountService extends AccountServiceImpl {
 	}
 
 	public List<Report> getReport() {
-		LocalDate lastMonth = LocalDate.now().minusMonths(1);
+		LocalDate lastMonth = LocalDate.now();
 		LocalDate start = lastMonth.withDayOfMonth(1);
 		LocalDate end = lastMonth.withDayOfMonth(lastMonth.lengthOfMonth());
 		List<Report> report = new ArrayList<>();
