@@ -3,6 +3,10 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.framework;
 import java.awt.BorderLayout;
 
 import javax.swing.table.DefaultTableModel;
+
+import edu.mum.cs.cs525.labs.exercises.project.bank.BankAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.creditcard.CreditCardAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountService;
 //
 import edu.mum.cs.cs525.labs.exercises.project.ui.bank.*;
 //import edu.mum.cs.cs525.labs.exercises.project.ui.bank.JDialog_Withdraw;
@@ -174,10 +178,14 @@ public class MainFrm extends javax.swing.JFrame {
            double samount =Double.parseDouble( model.getValueAt(selection, 5).toString());
            //long currentamount = Long.parseLong(samount);
  		    double newamount=samount-deposit;
- 		    model.setValueAt(String.valueOf(newamount),selection, 5);
- 		    if (newamount <0){
+ 		   // model.setValueAt(String.valueOf(newamount),selection, 5);
+ 		    if (newamount < 0){
+// 			   AccountService accountService = new BankAccountService();
+// 	 		   accountService.withdraw(name, Double.valueOf(deposit), "withdraw");
  		       JOptionPane.showMessageDialog(JButton_Withdraw, " "+name+" Your balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
  		    }
+ 		  
+ 	     
  		}
  		
  		
@@ -196,6 +204,19 @@ public class MainFrm extends javax.swing.JFrame {
     		 
 		    
 		    System.out.println(amountDeposit);
+		    
+		    
+		    //
+			// compute new amount
+//			long deposit = Long.parseLong(amountDeposit);
+//			String samount = (String) model.getValueAt(selection, 4);
+//			long currentamount = Long.parseLong(samount);
+//			long newamount = currentamount + deposit;
+//			model.setValueAt(String.valueOf(newamount), selection, 4);
+//			AccountService accountService = new CreditCardAccountService();
+//			accountService.deposit(ccnumber, Double.parseDouble(amountDeposit), description);
+//		
+//		    
 		    // compute new amount
             double deposit = Double.parseDouble(amountDeposit);
             double samount =Double.parseDouble( model.getValueAt(selection, 5).toString());

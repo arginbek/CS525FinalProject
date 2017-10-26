@@ -149,8 +149,10 @@ public class BankFrm extends MainFrm {
 				JButtonCompAC_actionPerformed(event);
 			else if (object == JButton_Deposit)
 				JButtonDeposit_actionPerformed(event);
-			else if (object == JButton_Withdraw)
+			else if (object == JButton_Withdraw) {
 				JButtonWithdraw_actionPerformed(event);
+				 fillTable();
+			}
 			else if (object == JButton_Addinterest)
 				JButtonAddinterest_actionPerformed(event);
 			else if (object == JButton_GenBill)

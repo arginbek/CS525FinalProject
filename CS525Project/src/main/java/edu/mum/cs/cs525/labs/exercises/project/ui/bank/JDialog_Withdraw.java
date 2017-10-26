@@ -24,6 +24,7 @@ public class JDialog_Withdraw extends JDialog_Withdraw_Main
 		AccountService accountService = new BankAccountService();
 		accountService.withdraw(super.JTextField_NAME.getText(), Double.valueOf(JTextField_AMT.getText()), "withdraw");
         super.parentframe.amountDeposit=super.JTextField_AMT.getText();
+        
 		dispose();
 	}
 
