@@ -120,6 +120,7 @@ public abstract class Account {
 		entry.setAccountNumber(this.getAccountNumber());
 		entry.setDescription(description);
 		entry.setValue(val);
+		entry.setDate(LocalDate.now());
 		entries.add(entry);
 	};
 
@@ -131,6 +132,7 @@ public abstract class Account {
 			entry.setAccountNumber(this.getAccountNumber());
 			entry.setDescription(description);
 			entry.setValue(-val);
+			entry.setDate(LocalDate.now());
 			entries.add(entry);
 		}
 	}

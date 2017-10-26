@@ -1,6 +1,7 @@
 package edu.mum.cs.cs525.labs.exercises.project.creditcard;
 
 import edu.mum.cs.cs525.labs.exercises.project.framework.Account;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountType;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Company;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAbstractFactory;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
@@ -32,7 +33,7 @@ public class CreateFactoryCreditCard implements CreateAbstractFactory {
 
 	public Party createCustomer() {
 		Party party;
-		if (accountTO.getAccountType().equals("company")) {
+		if (accountTO.getAccountType() == AccountType.company) {
 			party = new Company();
 		} else {
 			party = new Person();

@@ -52,7 +52,7 @@ public class CreateFactoryBank implements CreateAbstractFactory {
 
 	public Party createCustomer() {
 		Party party;
-		if (accountTO.getAccountType().equals("company")) {
+		if (accountTO.getAccountType() == AccountType.company) {
 			party = new Company();
 		} else {
 			party = new Person();

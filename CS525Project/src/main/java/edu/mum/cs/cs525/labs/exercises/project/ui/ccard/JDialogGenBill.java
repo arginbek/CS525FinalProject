@@ -5,6 +5,11 @@ package edu.mum.cs.cs525.labs.exercises.project.ui.ccard;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import edu.mum.cs.cs525.labs.exercises.project.creditcard.CreditCardAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.AccountService;
+import edu.mum.cs.cs525.labs.exercises.project.framework.Report;
 
 public class JDialogGenBill extends javax.swing.JDialog
 {
@@ -21,12 +26,43 @@ public class JDialogGenBill extends javax.swing.JDialog
 		// parse your Java file into its visual environment.
 		//{{INIT_CONTROLS
 		getContentPane().setLayout(null);
-		setSize(405,367);
+		setSize(800,500);
 		setVisible(false);
 		getContentPane().add(JScrollPane1);
-		JScrollPane1.setBounds(24,24,358,240);
-		JScrollPane1.getViewport().add(JTextField1);
-		JTextField1.setBounds(0,0,355,237);
+		JScrollPane1.setBounds(10,5,770,450);
+		//JScrollPane1.getViewport().add(JTextField1);
+		//JTextField1.setBounds(0,0,355,237);
+		
+		
+		
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("AccountNumber");
+		model.addColumn("UserName");
+		model.addColumn("Incoming");
+		model.addColumn("Outcoming");
+		model.addColumn("Total");
+		model.addColumn("Start");
+		model.addColumn("End");
+		
+		Object[] rowdata;
+		CreditCardAccountService service = new CreditCardAccountService();
+		for(Report report : service.getReport()) {
+			rowdata = new Object[7];
+			rowdata[0] = report.getAccountNumber();
+			rowdata[1] = report.getUserName();
+			rowdata[2] = report.getIncoming();
+			rowdata[3] = report.getOutcoming();
+			rowdata[4] = report.getTotal();
+			rowdata[5] = report.getStart();
+			rowdata[6] = report.getEnd();
+			model.addRow(rowdata);
+		}
+		JTable JTable1 = new JTable(model);
+		
+		// JScrollPane1.setBounds(12,92,444,160);
+		JScrollPane1.getViewport().add(JTable1);
+		JTable1.setBounds(0, 0, 420, 0);
+		
 		JButton_OK.setText("OK");
 		JButton_OK.setActionCommand("OK");
 		getContentPane().add(JButton_OK);

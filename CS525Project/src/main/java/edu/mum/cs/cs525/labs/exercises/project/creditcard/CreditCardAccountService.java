@@ -13,7 +13,6 @@ import edu.mum.cs.cs525.labs.exercises.project.framework.AccountServiceImpl;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Company;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAbstractFactory;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
-import edu.mum.cs.cs525.labs.exercises.project.framework.Observable;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Person;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Report;
 import edu.mum.cs.cs525.labs.exercises.project.framework.ReportType;
@@ -41,7 +40,7 @@ public class CreditCardAccountService extends AccountServiceImpl {
 	}
 
 	public List<Report> getReport() {
-		LocalDate lastMonth = LocalDate.now().minusMonths(1);
+		LocalDate lastMonth = LocalDate.now();
 		LocalDate start = lastMonth.withDayOfMonth(1);
 		LocalDate end = lastMonth.withDayOfMonth(lastMonth.lengthOfMonth());
 		List<Report> report = new ArrayList<>();

@@ -2,13 +2,16 @@ package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 import java.util.List;
 
-public abstract class AccountServiceImpl implements AccountService {
+import edu.mum.cs.cs525.labs.exercises.project.notification.AbstractObservable;
+import edu.mum.cs.cs525.labs.exercises.project.notification.ObserverEvent;
+
+public abstract class AccountServiceImpl extends AbstractObservable<Party> implements AccountService {
 	private AccountDAO accountDAO;
 	private CustomerDAO customerDAO;
 
 	public AccountServiceImpl() {
 		accountDAO = AccountDAOImpl.getInstance();
-		customerDAO = new CustomerDAOImpl();
+		customerDAO = CustomerDAOImpl.getInstance();
 	}
 
 	public void addInterest() {
@@ -22,32 +25,40 @@ public abstract class AccountServiceImpl implements AccountService {
 		InterestType interestType = caf.createInterest();
 		acct.setInterestType(interestType);
 		Party customer = customerDAO.loadCustomer(party.getEmail());
-		if (customer == null)
+		if (customer == null) {
 			customerDAO.saveCustomer(party);
-		else
+			acct.setCustomer(party);
+		} else {
 			acct.setCustomer(customer);
+		}
 		accountDAO.saveAccount(acct);
 	}
 
-	public void deposit(Account account, double val, String description) {
+	public void deposit(String accountNumber, double val, String description) {
+		Account account = getAccount(accountNumber);
 		account.deposit(val, description);
 		accountDAO.updateAccount(account);
-		if (checkNotify(account, val))
-			notifyObservers();
+		if (checkNotify(account, val)) {
+			this.addObserver(account.getCustomer());
+			notifyAllObservers(account.getCustomer(), new ObserverEvent(account, val, description));//account, val, description
+		}
 	}
 
-	public void withdraw(Account account, double val, String description) {
+	public void withdraw(String accountNumber, double val, String description) {
+		Account account = getAccount(accountNumber);
 		account.withdraw(val, description);
 		accountDAO.updateAccount(account);
-		if (checkNotify(account, val))
-			notifyObservers();
+		if (checkNotify(account, val)) {
+			this.addObserver(account.getCustomer());
+			notifyAllObservers(account.getCustomer(), new ObserverEvent(account, val, description));
+		}
 	}
 
-	public void notifyObservers() {
-
+	public Account getAccount(String accountNumber) {
+		return accountDAO.loadAccount(accountNumber);
 	}
-	
-	public List<? extends Account> getAccounts(){
+
+	public List<? extends Account> getAccounts() {
 		return accountDAO.getAccounts();
 	}
 
