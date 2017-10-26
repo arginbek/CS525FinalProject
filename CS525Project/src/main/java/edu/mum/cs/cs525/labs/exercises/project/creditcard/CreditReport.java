@@ -19,4 +19,12 @@ public class CreditReport extends Report {
 		this.minimumPayment = minimumPayment;
 	}
 
+	public double getMinimumPayment() {
+		return minimumPayment;
+	}
+
+	public void setMinimumPayment(double minimumPayment) {
+		this.minimumPayment = minimumPayment;
+	}
+
 }
