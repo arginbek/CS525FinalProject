@@ -6,11 +6,20 @@ import java.util.Map;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	Map<String, Party> customers = new HashMap<String, Party>();
-
-	public CustomerDAOImpl() {
+	public static CustomerDAOImpl instance;
+	private CustomerDAOImpl() {
 
 	}
-
+	public static CustomerDAOImpl getInstance() {
+		if(instance ==null) {
+			synchronized (CustomerDAOImpl.class) {
+				if(instance==null) {
+					instance = new CustomerDAOImpl();
+				}
+			}
+		}
+		return instance;
+	}
 	public void saveCustomer(Party customer) {
 		if (customer == null || customer.getEmail() == null)
 			throw new IllegalArgumentException();
