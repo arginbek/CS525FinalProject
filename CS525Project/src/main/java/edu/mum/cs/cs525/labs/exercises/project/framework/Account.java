@@ -138,8 +138,16 @@ public abstract class Account {
 	}
 
 	public void addInterest() {
-		this.balance = this.balance + this.interestType.calcInterest(this.getBalance());
-		
+
+		double val = this.interestType.calcInterest(this.getBalance());
+		this.balance = this.balance + val;
+		AccountEntry entry = new AccountEntry();
+		entry.setAccountName(this.getName());
+		entry.setAccountNumber(this.getAccountNumber());
+		entry.setDescription("Interest");
+		entry.setValue(val);
+		entry.setDate(LocalDate.now());
+		entries.add(entry);
 	}
 
 }
