@@ -4,9 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.mum.cs.cs525.labs.exercises.project.bank.CreateFactoryBank;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Account;
-import edu.mum.cs.cs525.labs.exercises.project.framework.AccountDAO;
 import edu.mum.cs.cs525.labs.exercises.project.framework.AccountDAOImpl;
 import edu.mum.cs.cs525.labs.exercises.project.framework.AccountEntry;
 import edu.mum.cs.cs525.labs.exercises.project.framework.AccountServiceImpl;
@@ -14,8 +12,6 @@ import edu.mum.cs.cs525.labs.exercises.project.framework.Company;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAbstractFactory;
 import edu.mum.cs.cs525.labs.exercises.project.framework.CreateAccountTO;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Person;
-import edu.mum.cs.cs525.labs.exercises.project.framework.Report;
-import edu.mum.cs.cs525.labs.exercises.project.framework.ReportType;
 
 public class CreditCardAccountService extends AccountServiceImpl {
 
@@ -39,11 +35,11 @@ public class CreditCardAccountService extends AccountServiceImpl {
 		}
 	}
 
-	public List<Report> getReport() {
+	public List<CreditReport> getReport() {
 		LocalDate lastMonth = LocalDate.now();
 		LocalDate start = lastMonth.withDayOfMonth(1);
 		LocalDate end = lastMonth.withDayOfMonth(lastMonth.lengthOfMonth());
-		List<Report> report = new ArrayList<>();
+		List<CreditReport> report = new ArrayList<>();
 
 		for (Account account : AccountDAOImpl.getInstance().getAccounts()) {
 			double totalDeposit = 0;
@@ -56,10 +52,10 @@ public class CreditCardAccountService extends AccountServiceImpl {
 						totalWithdraw += entry.getValue();
 				}
 			}
+			double total = totalDeposit + totalWithdraw;
 			report.add(new CreditReport(account.getAccountNumber(), account.getCustomer().getName(), totalDeposit,
-					totalWithdraw, totalDeposit - totalWithdraw, start, end,
-					((CreditCardInterestType) account.getInterestType())
-							.getMinimumPayment(totalDeposit - totalWithdraw)));
+					totalWithdraw, total, start, end,
+					((CreditCardInterestType) account.getInterestType()).getMinimumPayment(total >= 0 ? 0 : -total)));
 
 		}
 
