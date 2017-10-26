@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import edu.mum.cs.cs525.labs.exercises.project.creditcard.CreditCardAccountService;
+import edu.mum.cs.cs525.labs.exercises.project.creditcard.CreditReport;
 import edu.mum.cs.cs525.labs.exercises.project.framework.AccountService;
 import edu.mum.cs.cs525.labs.exercises.project.framework.Report;
 
@@ -41,20 +42,23 @@ public class JDialogGenBill extends javax.swing.JDialog
 		model.addColumn("Incoming");
 		model.addColumn("Outcoming");
 		model.addColumn("Total");
+		model.addColumn("MinimumPayment");
 		model.addColumn("Start");
 		model.addColumn("End");
 		
+		
 		Object[] rowdata;
 		CreditCardAccountService service = new CreditCardAccountService();
-		for(Report report : service.getReport()) {
-			rowdata = new Object[7];
+		for(CreditReport report : service.getReport()) {
+			rowdata = new Object[8];
 			rowdata[0] = report.getAccountNumber();
 			rowdata[1] = report.getUserName();
 			rowdata[2] = report.getIncoming();
 			rowdata[3] = report.getOutcoming();
 			rowdata[4] = report.getTotal();
-			rowdata[5] = report.getStart();
-			rowdata[6] = report.getEnd();
+			rowdata[5] = report.getMinimumPayment();
+			rowdata[6] = report.getStart();
+			rowdata[7] = report.getEnd();			
 			model.addRow(rowdata);
 		}
 		JTable JTable1 = new JTable(model);
