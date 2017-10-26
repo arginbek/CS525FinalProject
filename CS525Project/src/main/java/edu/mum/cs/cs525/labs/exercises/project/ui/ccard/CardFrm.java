@@ -178,7 +178,7 @@ public class CardFrm extends MainFrm {
 
 	void JButtonGenerateBill_actionPerformed(java.awt.event.ActionEvent event) {
 		JDialogGenBill billFrm = new JDialogGenBill();
-		//billFrm.setBounds(450, 20, 400, 350);
+		// billFrm.setBounds(450, 20, 400, 350);
 		billFrm.setLocationRelativeTo(null);
 		billFrm.show();
 	}
@@ -217,17 +217,29 @@ public class CardFrm extends MainFrm {
 			wd.show();
 
 			// compute new amount
+			/*
+			 * long deposit = Long.parseLong(amountDeposit); String samount = (String)
+			 * model.getValueAt(selection, 4); long currentamount = Long.parseLong(samount);
+			 * long newamount = currentamount - deposit;
+			 * model.setValueAt(String.valueOf(newamount), selection, 4); AccountService
+			 * accountService = new CreditCardAccountService();
+			 * accountService.withdraw(ccnumber, deposit, description); if (newamount < 0) {
+			 * JOptionPane.showMessageDialog(JButton_Withdraw, name +
+			 * "... Your balance is negative: $" + String.valueOf(newamount) +
+			 * " !Warning: negative balance", "", JOptionPane.WARNING_MESSAGE); }
+			 */
+
 			long deposit = Long.parseLong(amountDeposit);
-			String samount = (String) model.getValueAt(selection, 4);
-			long currentamount = Long.parseLong(samount);
-			long newamount = currentamount - deposit;
-			model.setValueAt(String.valueOf(newamount), selection, 4);
-			AccountService accountService = new CreditCardAccountService();
-			accountService.withdraw(ccnumber, deposit, description);
-			if (newamount < 0) {
-				JOptionPane.showMessageDialog(JButton_Withdraw, name + "... Your balance is negative: $"
-						+ String.valueOf(newamount) + " !Warning: negative balance", "", JOptionPane.WARNING_MESSAGE);
+			AccountServiceImpl accountService = new CreditCardAccountService();
+			Account account = accountService.getAccount(ccnumber);
+			if (deposit > account.getMinThreshold()) {
+				JOptionPane.showMessageDialog(JButton_Withdraw, name + "... Your balance is $"
+						+ String.valueOf(account.getBalance()) + ". Withdraw exceed minimum balance!!!", "",
+						JOptionPane.WARNING_MESSAGE);
 			}
+			accountService.withdraw(ccnumber, deposit, description);
+			account = accountService.getAccount(ccnumber);
+			model.setValueAt(account.getBalance(), selection, 4);
 		}
 	}
 }
