@@ -301,8 +301,11 @@ public class BankFrm extends MainFrm {
 	// }
 
 	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event) {
-		JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts",
+		AccountService accountService = new BankAccountService();
+		accountService.addInterest();
+		JOptionPane.showMessageDialog(JButton_Addinterest, "Interest is added to all accounts",
 				"Add interest to all accounts", JOptionPane.WARNING_MESSAGE);
-
+		
+      fillTable();
 	}
 }
