@@ -1,9 +1,11 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
 import java.util.List;
-import java.util.Observable;
 
-public abstract class AccountServiceImpl extends Observable implements AccountService {
+import edu.mum.cs.cs525.labs.exercises.project.notification.AbstractObservable;
+import edu.mum.cs.cs525.labs.exercises.project.notification.ObserverEvent;
+
+public abstract class AccountServiceImpl extends AbstractObservable<Party> implements AccountService {
 	private AccountDAO accountDAO;
 	private CustomerDAO customerDAO;
 
@@ -23,14 +25,11 @@ public abstract class AccountServiceImpl extends Observable implements AccountSe
 		InterestType interestType = caf.createInterest();
 		acct.setInterestType(interestType);
 		Party customer = customerDAO.loadCustomer(party.getEmail());
-
 		if (customer == null) {
 			customerDAO.saveCustomer(party);
 			acct.setCustomer(party);
-			this.addObserver(party);
 		} else {
 			acct.setCustomer(customer);
-			this.addObserver(customer);
 		}
 		accountDAO.saveAccount(acct);
 	}
@@ -39,16 +38,20 @@ public abstract class AccountServiceImpl extends Observable implements AccountSe
 		Account account = getAccount(accountNumber);
 		account.deposit(val, description);
 		accountDAO.updateAccount(account);
-		if (checkNotify(account, val))
-			notifyObservers(new TransactionSender(account, val, description));
+		if (checkNotify(account, val)) {
+			this.addObserver(account.getCustomer());
+			notifyAllObservers(account.getCustomer(), new ObserverEvent(account, val, description));//account, val, description
+		}
 	}
 
 	public void withdraw(String accountNumber, double val, String description) {
 		Account account = getAccount(accountNumber);
 		account.withdraw(val, description);
 		accountDAO.updateAccount(account);
-		if (checkNotify(account, val))
-			notifyObservers(new TransactionSender(account, val, description));
+		if (checkNotify(account, val)) {
+			this.addObserver(account.getCustomer());
+			notifyAllObservers(account.getCustomer(), new ObserverEvent(account, val, description));
+		}
 	}
 
 	public Account getAccount(String accountNumber) {
