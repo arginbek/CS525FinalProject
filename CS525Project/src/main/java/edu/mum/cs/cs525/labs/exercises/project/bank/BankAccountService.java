@@ -60,7 +60,7 @@ public class BankAccountService extends AccountServiceImpl {
 				}
 			}
 			report.add(new Report(account.getAccountNumber(), account.getCustomer().getName(), totalDeposit,
-					totalWithdraw, totalDeposit - totalWithdraw, start, end));
+					totalWithdraw, totalDeposit + totalWithdraw, start, end));
 		}
 
 		return report;
