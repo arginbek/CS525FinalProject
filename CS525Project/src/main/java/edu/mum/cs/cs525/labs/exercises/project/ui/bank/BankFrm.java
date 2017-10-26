@@ -52,6 +52,7 @@ public class BankFrm extends MainFrm {
 		model = new DefaultTableModel();
 
 		initModelCol();
+		fillTable();
 		rowdata = new Object[8];
 		newaccount = false;
 		JTable1 = new JTable(model);
@@ -169,14 +170,41 @@ public class BankFrm extends MainFrm {
 
 		// fill the data table
 		//
+		fillTable();
+
+		// for testing we are going to load all from list
+
+		// if (newaccount){
+		// // add row to table
+		// rowdata[0] = accountnr;
+		// rowdata[1] = clientName;
+		// rowdata[2] = city;
+		// rowdata[3] = "P";
+		// rowdata[4] = accountType;
+		// rowdata[5] = "0";
+		// model.addRow(rowdata);
+		// JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
+		// newaccount=false;
+		// }
+
+	}
+
+	private void fillTable() {
 		AccountService accSer = new BankAccountService();
 		ArrayList<BankAccount> accounts = (ArrayList<BankAccount>) accSer.getAccounts();
 		//
 		// model
-
+		//
 		//model = new DefaultTableModel();
+		//rowdata = new Object[8];
+		//newaccount = false;
+		
         //refresh model
 		//initModelCol();
+		while(model.getRowCount()>=1) {
+			System.out.println(model.getRowCount());
+			model.removeRow(model.getRowCount()-1);
+		}
 		for (BankAccount bankAccount : accounts) {
 			rowdata[0] = bankAccount.getAccountNumber();
 			rowdata[1] = bankAccount.getName();
@@ -194,22 +222,7 @@ public class BankFrm extends MainFrm {
 			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
 			newaccount = false;
 		}
-
-		// for testing we are going to load all from list
-
-		// if (newaccount){
-		// // add row to table
-		// rowdata[0] = accountnr;
-		// rowdata[1] = clientName;
-		// rowdata[2] = city;
-		// rowdata[3] = "P";
-		// rowdata[4] = accountType;
-		// rowdata[5] = "0";
-		// model.addRow(rowdata);
-		// JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
-		// newaccount=false;
-		// }
-
+		//JTable1 = new JTable(model);
 	}
 
 	void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event) {
