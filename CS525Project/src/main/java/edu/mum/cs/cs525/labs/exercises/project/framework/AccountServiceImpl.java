@@ -9,7 +9,7 @@ public abstract class AccountServiceImpl extends Observable implements AccountSe
 
 	public AccountServiceImpl() {
 		accountDAO = AccountDAOImpl.getInstance();
-		customerDAO = new CustomerDAOImpl();
+		customerDAO = CustomerDAOImpl.getInstance();
 	}
 
 	public void addInterest() {
