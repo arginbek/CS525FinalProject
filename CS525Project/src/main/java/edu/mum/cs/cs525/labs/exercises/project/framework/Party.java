@@ -1,9 +1,9 @@
 package edu.mum.cs.cs525.labs.exercises.project.framework;
 
-import java.util.Observable;
-import java.util.Observer;
+import edu.mum.cs.cs525.labs.exercises.project.notification.Observer;
+import edu.mum.cs.cs525.labs.exercises.project.notification.ObserverEvent;
 
-public abstract class Party implements Observer {
+public abstract class Party implements Observer<Party> {
 	protected String name;
 	protected String street;
 	protected String city;
@@ -59,11 +59,10 @@ public abstract class Party implements Observer {
 		this.name = name;
 	}
 
-	public void update(Observable o, Object arg) {
-		TransactionSender sender = ((TransactionSender) arg);
-		String content = "Transaction description: " + sender.getDescription() + 
-				"Transaction amount: " + sender.getAmount() + 
-				"Account number: " + sender.getAccount().getAccountNumber();
+	public void update(Party o, ObserverEvent eventType) {
+		String content = "Transaction description: " + eventType.getDescription() + 
+				" Transaction amount: " + eventType.getAmount() + 
+				" Account number: " + eventType.getAccount().getAccountNumber();
 		sendEmail(content);
 	}
 
