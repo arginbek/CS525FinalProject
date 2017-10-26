@@ -156,7 +156,11 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 	   accountTO.setStreet(JTextField_STR.getText());
 	   accountTO.setZip(JTextField_ZIP.getText());
 	   accountTO.setState(JTextField_ST.getText());
+	   accountTO.setEmail(JTextField_EM.getText());
 	   accountTO.setAccountType(AccountType.company);
+	   accountTO.setName(JTextField_NAME.getText());
+	   
+	   
        parentframe.accountnr=JTextField_ACNR.getText();
        parentframe.clientName=JTextField_NAME.getText();
        parentframe.street=JTextField_STR.getText();

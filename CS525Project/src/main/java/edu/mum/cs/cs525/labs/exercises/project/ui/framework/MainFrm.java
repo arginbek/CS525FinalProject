@@ -165,16 +165,16 @@ public class MainFrm extends javax.swing.JFrame {
              String name = (String)model.getValueAt(selection, 0);
 
  		    //Show the dialog for adding withdraw amount for the current mane
- 		    JDialog_Withdraw wd = new JDialog_Withdraw(myframe,name);
+ 		    JDialog_Withdraw_Main wd = new JDialog_Withdraw_Main(myframe,name);
  		    wd.setBounds(430, 15, 275, 140);
  		    wd.show();
      		
  		    // compute new amount
-             long deposit = Long.parseLong(amountDeposit);
-             String samount = (String)model.getValueAt(selection, 4);
-             long currentamount = Long.parseLong(samount);
- 		    long newamount=currentamount-deposit;
- 		    model.setValueAt(String.valueOf(newamount),selection, 4);
+ 		   double deposit = Double.parseDouble(amountDeposit);
+           double samount =Double.parseDouble( model.getValueAt(selection, 5).toString());
+           //long currentamount = Long.parseLong(samount);
+ 		    double newamount=samount-deposit;
+ 		    model.setValueAt(String.valueOf(newamount),selection, 5);
  		    if (newamount <0){
  		       JOptionPane.showMessageDialog(JButton_Withdraw, " "+name+" Your balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
  		    }
@@ -190,15 +190,15 @@ public class MainFrm extends javax.swing.JFrame {
             String accnr = (String)model.getValueAt(selection, 0);
     	    
 		    //Show the dialog for adding deposit amount for the current mane
-		    JDialog_Deposit dep = new JDialog_Deposit(myframe,accnr);
+		    JDialog_Deposit_Main dep = new JDialog_Deposit_Main(myframe,accnr);
 		    dep.setBounds(430, 15, 275, 140);
 		    dep.show();
     		
 		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount+deposit;
+            double deposit = Double.parseDouble(amountDeposit);
+            double samount =Double.parseDouble( model.getValueAt(selection, 5).toString());
+            //long currentamount = Long.parseLong(samount);
+		    double newamount=samount+deposit;
 		    model.setValueAt(String.valueOf(newamount),selection, 5);
 		}
 		
